@@ -7,7 +7,6 @@ import {
   Settings,
   Search,
   ChevronsUpDown,
-  Palette,
   FolderKanban,
   Users,
   PanelLeftClose,
@@ -122,14 +121,6 @@ export function Sidebar({
         ) : (
           <div className="ref-collapsed-divider" />
         )}
-        <button
-          className="ref-nav-item"
-          onClick={onOpenRationale}
-          title={isCollapsed ? "Brand kits (108w rationale)" : undefined}
-        >
-          <span className="ref-item-icon"><Palette size={16} /></span>
-          {!isCollapsed && <span className="ref-item-label">Brand kits (108w)</span>}
-        </button>
         <button
           className="ref-nav-item"
           onClick={() => onNavigate("Settings")}
