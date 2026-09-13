@@ -114,23 +114,6 @@ export function Sidebar({
         })}
       </div>
 
-      {/* SETTINGS GROUP */}
-      <div className="ref-menu-group">
-        {!isCollapsed ? (
-          <span className="ref-group-label">SETTINGS</span>
-        ) : (
-          <div className="ref-collapsed-divider" />
-        )}
-        <button
-          className="ref-nav-item"
-          onClick={() => onNavigate("Settings")}
-          title={isCollapsed ? "Settings" : undefined}
-        >
-          <span className="ref-item-icon"><Settings size={16} /></span>
-          {!isCollapsed && <span className="ref-item-label">Settings</span>}
-        </button>
-      </div>
-
       {/* ASSETS */}
       <div className="ref-menu-group">
         {!isCollapsed ? (
@@ -215,8 +198,17 @@ export function Sidebar({
         })}
       </div>
 
-      {/* BOTTOM COLLAPSE ACTION BAR */}
+      {/* BOTTOM UTILITY ACTIONS: SETTINGS & COLLAPSE */}
       <div className="ref-sidebar-bottom">
+        <button
+          className={`ref-nav-item bottom-settings-btn ${activePage === "Settings" ? "active" : ""}`}
+          onClick={() => onNavigate("Settings")}
+          title={isCollapsed ? "Settings" : undefined}
+        >
+          <span className="ref-item-icon"><Settings size={16} /></span>
+          {!isCollapsed && <span className="ref-item-label">Settings</span>}
+        </button>
+
         <button
           className="ref-bottom-collapse-btn"
           onClick={onToggleCollapse}
