@@ -14,9 +14,12 @@ export function AiInsightDrawer({
         </div>
 
         <div className="insight-top-text">
-          <span className="ai-label">AI PREDICTIVE INTELLIGENCE</span>
+          <span className="ai-label">AI Predictive Intelligence</span>
           <h2>Efficiency inflection detected in Sprint 24</h2>
-          <span className="insight-confidence">Confidence: 96.4% • Based on 148 commits</span>
+          <div className="insight-confidence">
+            <span className="confidence-dot" />
+            <span>Confidence: 96.4% • Based on 148 commits</span>
+          </div>
         </div>
 
         <button
@@ -35,14 +38,16 @@ export function AiInsightDrawer({
       </div>
 
       <div className="insight-body">
-        <p>
+        <p className="insight-summary-text">
           Team output surged by <strong>18.4%</strong> over the rolling 30-day window. Automated
           git flow tracking indicates task handoff latency between Design and Frontend dropped from 6.8h to 4.2h.
         </p>
 
         <div className="insight-highlight">
-          <TrendingUp size={18} />
-          <div>
+          <div className="insight-highlight-icon-wrap">
+            <TrendingUp size={16} />
+          </div>
+          <div className="insight-highlight-content">
             <strong>Primary Driver: Design System Tokens</strong>
             <p>Direct export from Figma tokens into CSS variables eliminated 85% of visual QA back-and-forth.</p>
           </div>
