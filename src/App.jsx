@@ -19,6 +19,7 @@ import { Toast } from "./components/ui/Toast";
 // Modals
 import { DesignRationaleModal } from "./components/modals/DesignRationaleModal";
 import { MemberDetailModal } from "./components/modals/MemberDetailModal";
+import { AvatarsModal } from "./components/modals/AvatarsModal";
 import { ReportGeneratorModal } from "./components/analytics/ReportGeneratorModal";
 
 // Dashboard Components (Matching Reference Design)
@@ -56,7 +57,18 @@ function App() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [isRationaleOpen, setIsRationaleOpen] = useState(false);
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
+  const [isAvatarsModalOpen, setIsAvatarsModalOpen] = useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
+
+  const handleSelectMember = (idOrMember) => {
+    if (typeof idOrMember === "string") {
+      const found = team.find((m) => m.id === idOrMember) || team[0];
+      setSelectedMember(found);
+    } else if (idOrMember) {
+      setSelectedMember(idOrMember);
+    }
+  };
+
   // Sidebar & Squad Selection State
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [selectedTeamId, setSelectedTeamId] = useState("development");
@@ -187,6 +199,7 @@ function App() {
         onToggleCollapse={() => setIsSidebarCollapsed((prev) => !prev)}
         selectedTeamId={selectedTeamId}
         onSelectTeam={handleSelectTeam}
+        onOpenAvatars={() => setIsAvatarsModalOpen(true)}
       />
 
       {/* MAIN VIEWPORT */}
@@ -201,6 +214,7 @@ function App() {
           onMarkAllRead={handleMarkAllRead}
           onOpenRationale={() => setIsRationaleOpen(true)}
           onOpenReportModal={() => setIsReportModalOpen(true)}
+          onOpenUserProfile={() => handleSelectMember("manish")}
         />
 
         <div className="ref-page-body">
@@ -228,6 +242,7 @@ function App() {
                   isRebalanced={isRebalanced}
                   onApplyRebalance={handleApplyRebalance}
                   onUndoRebalance={handleUndoRebalance}
+                  onSelectMember={handleSelectMember}
                 />
 
                 {/* BOTTOM SPLIT SECTION (TASK MANAGER & INBOXES) */}
@@ -236,9 +251,11 @@ function App() {
                     tasks={tasks}
                     onAddTask={handleAddTask}
                     onTriggerAiRebalance={handleApplyRebalance}
-                    onSelectTask={() => setSelectedMember(team[0])}
+                    onSelectTask={() => handleSelectMember(team[0])}
                     selectedTeamId={selectedTeamId}
                     onClearTeam={() => setSelectedTeamId(null)}
+                    onSelectMember={handleSelectMember}
+                    onOpenAvatars={() => setIsAvatarsModalOpen(true)}
                   />
 
                   <InboxesFeed
@@ -249,7 +266,8 @@ function App() {
                         message: `Queued prompt: "${msg}"`,
                       })
                     }
-                    onSelectMessage={() => setSelectedMember(team[1])}
+                    onSelectMessage={() => handleSelectMember(team[1])}
+                    onSelectMember={handleSelectMember}
                   />
                 </section>
               </motion.div>
@@ -367,6 +385,13 @@ function App() {
         isOpen={Boolean(selectedMember)}
         onClose={() => setSelectedMember(null)}
         onReassignTask={() => handleApplyRebalance()}
+      />
+
+      <AvatarsModal
+        isOpen={isAvatarsModalOpen}
+        onClose={() => setIsAvatarsModalOpen(false)}
+        team={team}
+        onSelectMember={handleSelectMember}
       />
 
       <ReportGeneratorModal

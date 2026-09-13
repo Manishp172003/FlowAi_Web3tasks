@@ -73,6 +73,24 @@ export const INITIAL_TEAM = [
       { id: "T-125", title: "Mobile Safari viewport clipping bug", priority: "Medium", due: "Tomorrow" },
     ],
   },
+  {
+    id: "manish",
+    name: "Manish Pawar",
+    role: "Product Lead & PM",
+    initials: "M",
+    status: "Active",
+    tasks: 31,
+    score: 95,
+    capacity: 82,
+    burnoutRisk: "Low",
+    avatarBg: "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)",
+    avatarColor: "#ffffff",
+    skills: ["Product Strategy", "Sprint Planning", "AI Rebalancing", "Design Systems"],
+    activeTickets: [
+      { id: "T-101", title: "Sprint 25 roadmap & workload rebalancer", priority: "High", due: "Today" },
+      { id: "T-109", title: "Web3Task evaluation executive review", priority: "Urgent", due: "Due today" },
+    ],
+  },
 ];
 
 export const INITIAL_TASKS = [

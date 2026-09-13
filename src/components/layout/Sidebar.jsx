@@ -26,6 +26,7 @@ export function Sidebar({
   onToggleCollapse,
   selectedTeamId,
   onSelectTeam,
+  onOpenAvatars,
 }) {
   const mainMenu = [
     { id: "Dashboard", label: "Home", icon: <LayoutDashboard size={17} /> },
@@ -131,8 +132,8 @@ export function Sidebar({
         </button>
         <button
           className="ref-nav-item"
-          onClick={() => onNavigate("Team")}
-          title={isCollapsed ? "Avatars" : undefined}
+          onClick={onOpenAvatars}
+          title={isCollapsed ? "Avatars & Contributor Roster" : undefined}
         >
           <span className="ref-item-icon"><Users size={16} /></span>
           {!isCollapsed && <span className="ref-item-label">Avatars</span>}

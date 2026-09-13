@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ChevronLeft, Maximize2, Search, Send } from "lucide-react";
 import { INBOX_MESSAGES } from "../../data/mockData";
 
-export function InboxesFeed({ onSendMessage, onSelectMessage }) {
+export function InboxesFeed({ onSendMessage, onSelectMessage, onSelectMember }) {
   const [query, setQuery] = useState("");
   const [replyText, setReplyText] = useState("");
 
@@ -57,7 +57,14 @@ export function InboxesFeed({ onSendMessage, onSelectMessage }) {
             onClick={() => onSelectMessage && onSelectMessage(item)}
           >
             <div className="inbox-item-top">
-              <div className="inbox-author">
+              <div
+                className="inbox-author"
+                title={`Inspect ${item.sender}'s contributor profile`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (onSelectMember) onSelectMember(item.sender.toLowerCase().includes("rahul") ? "rahul" : "priya");
+                }}
+              >
                 <img src={item.avatar} alt={item.sender} className="author-img" />
                 <div>
                   <strong>{item.sender}</strong>

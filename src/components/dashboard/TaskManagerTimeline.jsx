@@ -19,6 +19,8 @@ export function TaskManagerTimeline({
   onTriggerAiRebalance,
   selectedTeamId,
   onClearTeam,
+  onSelectMember,
+  onOpenAvatars,
 }) {
   const tasks = propTasks || INITIAL_TASKS;
   const [selectedDay, setSelectedDay] = useState("Mon");
@@ -137,9 +139,36 @@ export function TaskManagerTimeline({
 
             <div className="tm-card-footer">
               <div className="tm-avatar-stack">
-                <div className="stack-avatar a1">PS</div>
-                <div className="stack-avatar a2">RM</div>
-                <div className="stack-avatar count">+3</div>
+                <div
+                  className="stack-avatar a1"
+                  title="Priya Sharma (Product Designer)"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (onSelectMember) onSelectMember("priya");
+                  }}
+                >
+                  PS
+                </div>
+                <div
+                  className="stack-avatar a2"
+                  title="Rahul Mehta (Backend Lead • 94% load)"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (onSelectMember) onSelectMember("rahul");
+                  }}
+                >
+                  RM
+                </div>
+                <div
+                  className="stack-avatar count"
+                  title="View all 5 team contributor avatars"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (onOpenAvatars) onOpenAvatars();
+                  }}
+                >
+                  +3
+                </div>
               </div>
 
               <div className="tm-meta-stats">
@@ -169,8 +198,26 @@ export function TaskManagerTimeline({
 
             <div className="tm-card-footer">
               <div className="tm-avatar-stack">
-                <div className="stack-avatar a3">AB</div>
-                <div className="stack-avatar a4">MP</div>
+                <div
+                  className="stack-avatar a3"
+                  title="Yamini Bisen (Frontend Developer)"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (onSelectMember) onSelectMember("yamini");
+                  }}
+                >
+                  YB
+                </div>
+                <div
+                  className="stack-avatar a4"
+                  title="Manish Pawar (Product Lead)"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (onSelectMember) onSelectMember("manish");
+                  }}
+                >
+                  MP
+                </div>
               </div>
 
               <div className="tm-meta-stats">
@@ -201,8 +248,26 @@ export function TaskManagerTimeline({
               </div>
               <div className="tm-card-footer">
                 <div className="tm-avatar-stack">
-                  <div className="stack-avatar a1">RM</div>
-                  <div className="stack-avatar a2">PS</div>
+                  <div
+                    className="stack-avatar a1"
+                    title="Rahul Mehta (Backend Lead)"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (onSelectMember) onSelectMember("rahul");
+                    }}
+                  >
+                    RM
+                  </div>
+                  <div
+                    className="stack-avatar a2"
+                    title="Priya Sharma (Product Designer)"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (onSelectMember) onSelectMember("priya");
+                    }}
+                  >
+                    PS
+                  </div>
                 </div>
                 <div className="tm-meta-stats">
                   <span><MessageSquare size={13} /> 7</span>

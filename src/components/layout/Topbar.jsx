@@ -10,6 +10,7 @@ export function Topbar({
   onMarkAllRead,
   onOpenRationale,
   onOpenReportModal,
+  onOpenUserProfile,
 }) {
   return (
     <header className="ref-topbar">
@@ -71,7 +72,13 @@ export function Topbar({
           />
         </div>
 
-        <div className="ref-user-avatar">
+        <div
+          className="ref-user-avatar"
+          onClick={onOpenUserProfile}
+          title="Manish Pawar (Product Lead) • Click to inspect profile"
+          role="button"
+          tabIndex={0}
+        >
           <span>M</span>
         </div>
       </div>

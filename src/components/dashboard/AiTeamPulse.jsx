@@ -18,6 +18,7 @@ export function AiTeamPulse({
   isRebalanced,
   onApplyRebalance,
   onUndoRebalance,
+  onSelectMember,
 }) {
   const [isApplying, setIsApplying] = useState(false);
 
@@ -82,19 +83,35 @@ export function AiTeamPulse({
                 transition={{ duration: 0.25, ease: "easeInOut" }}
               >
                 <div className="ai-details-grid">
-                  <div className="ai-detail-card warning">
+                  <div
+                    className="ai-detail-card warning"
+                    style={{ cursor: "pointer" }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (onSelectMember) onSelectMember("rahul");
+                    }}
+                    title="Inspect Rahul Mehta's bottleneck profile"
+                  >
                     <AlertCircle size={16} />
                     <div>
                       <strong>Rahul Mehta (Backend Lead)</strong>
-                      <span>Overloaded at 94% capacity with 3 critical blockers.</span>
+                      <span>Overloaded at 94% capacity with 3 critical blockers. (Click to inspect)</span>
                     </div>
                   </div>
 
-                  <div className="ai-detail-card info">
+                  <div
+                    className="ai-detail-card info"
+                    style={{ cursor: "pointer" }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (onSelectMember) onSelectMember("priya");
+                    }}
+                    title="Inspect Priya Sharma's available capacity profile"
+                  >
                     <Zap size={16} />
                     <div>
                       <strong>Priya Sharma (Product Designer)</strong>
-                      <span>Has 24% available bandwidth & completed Sprint 24 tokens early.</span>
+                      <span>Has 24% available bandwidth & completed Sprint 24 tokens early. (Click to inspect)</span>
                     </div>
                   </div>
                 </div>
